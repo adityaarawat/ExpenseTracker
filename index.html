@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css
+    ">
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        
+        }
+        .container{
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: rgb(218, 222, 226);
+            box-shadow: 2px 3px rgba(90, 140, 158, 0.5);
+            border-radius: 8px;
+            border-radius: 20px;
+        }
+        input[type="text"],input[type="number"],input[type="submit"],select{
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 25px;
+            padding: 3px;
+            color: rgba(10, 10, 10, 0.884);
+        }
+        input[type="submit"]{
+            background-color: #004b2c;
+            color: white;
+            height: 40px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover{
+            background-color: #010e08;
+            color: white;
+            cursor: pointer;
+        }
+        #table{
+            border: 1px solid rgba(197, 197, 197, 0.87);
+            width: 100%;
+            border-collapse: collapse;
+
+        }
+        thead{
+            background-color: #004b2c;
+            color: white;
+            font-size: 18px;
+        }
+        tr{
+            border: 2px solid #e2d2d2d0;
+            text-align: center;
+        }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Expense Tracker</h1>
+      <form id="formExpense">
+        <input type="text" id="description"  placeholder="Expense Description" /> </br>
+        <select id="category">
+          <option value="">Select Category</option>
+          <option value="food">Food</option>
+          <option value="transport">Transport</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="utilities.
+          ">Utilities</option>
+            <option value="others">others</option>
+         
+        </select>
+    </br>
+    <input id="amount" type="number" required placeholder="Amount" >
+     
+<br/>
+<input type="submit" value="Add Expense">
+
+</form>
+<h2>Expense Summary</h2>
+<table id="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Delete Expense</th>
+        </tr>
+    </thead>
+    <tbody id="listBody">
+
+    </tbody>
+</table>
+    </div>
+    <script>
+const expenseForm=document.querySelector("#formExpense");
+const listMaker=document.querySelector("#listBody");
+expenseForm.addEventListener("submit",(event)=>{
+    event.preventDefault();
+    const description= document.querySelector("#description").value;
+    const amount=document.querySelector("#amount").value;
+    const category=document.querySelector("#category").value;
+    if(description && category && !isNaN(amount)){
+        const newRow=document.createElement("tr");
+        newRow.innerHTML=`<td>${description}</td> 
+        <td>${category}</td>
+        <td>${amount}</td>
+        <td><i class="fa-solid fa-trash"></i></td>
+        `;
+        listMaker.appendChild(newRow);
+        document.querySelector("#description").value="";
+    document.querySelector("#amount").value="";
+    document.querySelector("#category").value="";
+    }
+    else{
+        alert("Please enter complete Valid details");
+    }
+
+})
+
+    </script>
+  </body>
+</html>
